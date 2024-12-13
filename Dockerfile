@@ -1,4 +1,5 @@
 FROM nginx:latest
+RUN touch /usr/share/nginx/html/index.html
 EXPOSE 80
 
 # Create the index.html file within the Dockerfile
