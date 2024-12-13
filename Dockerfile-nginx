@@ -1,0 +1,16 @@
+# Use the official Nginx image from Docker Hub as the base image
+FROM nginx:latest
+
+# Copy your custom Nginx configuration file (if any) to the container
+# Replace 'default.conf' with the name of your configuration file
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+# Copy website static files to the container's web root directory
+# Replace 'html' with the path to your local static files
+COPY html /usr/share/nginx/html
+
+# Expose port 80 to make the web server accessible
+EXPOSE 80
+
+# Command to start Nginx (this is the default CMD in the base image)
+CMD ["nginx", "-g", "daemon off;"]
