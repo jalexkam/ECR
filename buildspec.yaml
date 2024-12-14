@@ -29,8 +29,6 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:latest
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:$IMAGE_TAG
 
-      - aws lambda update-function-code \
-                --function-name Lambda-ECR \
-                --image-uri $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:latest
+      - aws lambda update-function-code --function-name Lambda-ECR --image-uri $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:latest
 
 
