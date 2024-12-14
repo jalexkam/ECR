@@ -20,7 +20,7 @@ phases:
       - docker build -t my-lambda-docker:$IMAGE_TAG . 
 
       - echo bulding alex-lambda.........
-      - docker build -t alex-lambda:latest -f ./src/Dockerfile-lambda .
+      - docker build -t alex-lambda:latest -f ./src/Dockerfile-lambda  .
       - docker build -t alex-lambda:$IMAGE_TAG  -f ./src/Dockerfile-lambda .
 
       - echo Tagging Docker image...
