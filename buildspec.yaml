@@ -10,11 +10,18 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t my-lambda-docker .
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
-      - docker tag my-lambda-docker:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:$COMMIT_HASH
+      - docker build -t my-lambda-docker:latest .
+      - docker build -t my-lambda-docker:$IMAGE_TAG .      
+
+      - echo Tagging Docker image...
+      - docker tag my-lambda-docker:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:$IMAGE_TAG
+      - docker tag my-lambda-docker:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:latest
+
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:$COMMIT_HASH
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:$latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:$IMAGE_TAG
+
