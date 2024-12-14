@@ -20,8 +20,8 @@ phases:
       - docker build -t my-lambda-docker:$IMAGE_TAG . 
 
       - echo bulding alex-lambda.........
-      - docker build -t alex-lambda:latest -f ./src/Dockerfile-lambda
-      - docker build -t alex-lambda:$IMAGE_TAG  -f ./src/Dockerfile-lambda
+      - docker build -t alex-lambda:latest -f ./src/Dockerfile-lambda .
+      - docker build -t alex-lambda:$IMAGE_TAG  -f ./src/Dockerfile-lambda .
 
       - echo Tagging Docker image...
       - docker tag my-lambda-docker:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/my-app-lambda-docker:$IMAGE_TAG
