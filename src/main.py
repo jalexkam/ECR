@@ -15,7 +15,7 @@ def lambda_handler(event, context):
     # Example response
     response = {
         "statusCode": 200,
-        "body": "Hello, this is a basic Lambda function!"
+        "body": "Hello, this is a basic Lambda function! I have been changed in the code"
     }
 
     return response
